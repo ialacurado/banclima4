@@ -8,8 +8,10 @@ import { Eye } from "lucide-react";
 const projects = [
   {
     id: "Ban12345",
-    name: "Moeda Social Carbono",
+    name: "Moeda Social Carbono - Colônia Z10",
+    registryId: "54321",
     region: "RJ/Brasil",
+    type: "Mitigação",
     developer: "Instituto Terrazul",
     status: "Projeto Certificado Gold Standard",
     description: "Primeira certificação Gold Standard de \"redução de emissões de CO2 a partir de reciclagem de PET\".",
@@ -39,10 +41,13 @@ const UserProjects: React.FC = () => {
             <CardContent className="p-4">
               <div className="mb-4">
                 <p className="font-medium">{projects[0].name}</p>
+                <p className="text-sm text-gray-600">Registro Banclima {projects[0].registryId}</p>
+                <p className="text-sm text-gray-600">Região: {projects[0].region}</p>
+                <p className="text-sm text-gray-600">Tipo: {projects[0].type}</p>
               </div>
               
               <div className="mb-4">
-                <p className="text-sm text-gray-500">Status</p>
+                <p className="text-sm text-gray-500">Status: Ativo</p>
                 <div className="flex items-center">
                   <span className="h-2 w-2 rounded-full bg-green-500 mr-2"></span>
                   <p className="text-sm">{projects[0].status}</p>

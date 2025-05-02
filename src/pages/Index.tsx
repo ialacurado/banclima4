@@ -1,10 +1,10 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Eye, EyeOff, Copyright } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { toast } from "@/components/ui/sonner";
 import { useNavigate } from "react-router-dom";
+import Footer from "@/components/layout/Footer";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -147,21 +147,7 @@ const Index = () => {
         </div>
 
         {/* Footer - Only on right side */}
-        <footer className="bg-gray-900 py-4 text-gray-400">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-center">
-              <img 
-                src="/lovable-uploads/de4cbd17-2564-4706-9233-a15b28b360da.png" 
-                alt="Banclima Logo" 
-                className="h-auto w-[120px]" 
-              />
-              <div className="flex items-center ml-4 text-xs">
-                <Copyright className="h-3 w-3 mr-1" />
-                <span>2025 Banclima</span>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   );

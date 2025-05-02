@@ -19,7 +19,11 @@ import AdminProjectDetail from "./pages/admin/AdminProjectDetail";
 import Profile from "./pages/Profile";
 import UserPanel from "./pages/UserPanel";
 import ProjectDetail from "./pages/ProjectDetail";
+import ProjectUpdate from "./pages/ProjectUpdate";
+import ProjectStatus from "./pages/ProjectStatus";
+import ProjectRegion from "./pages/ProjectRegion";
 import Dashboard from "./pages/Dashboard";
+import MyProjects from "./pages/MyProjects";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +40,10 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/panel" element={<UserPanel />} />
           <Route path="/project/:id" element={<ProjectDetail />} />
+          <Route path="/project/update/:id" element={<ProjectUpdate />} />
+          <Route path="/project/status" element={<ProjectStatus />} />
+          <Route path="/project/region" element={<ProjectRegion />} />
+          <Route path="/my-projects" element={<MyProjects />} />
           <Route path="/carbon-currency" element={<UserPanel />} />
           <Route path="/emission" element={<UserPanel />} />
           <Route path="/traceability" element={<UserPanel />} />

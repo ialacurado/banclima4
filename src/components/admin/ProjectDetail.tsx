@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { 
@@ -38,10 +37,12 @@ const ProjectDetail: React.FC = () => {
   // Mock data for the Moeda Social Carbono project
   const project = {
     id: "PRJ-001",
-    name: "Moeda Social Carbono",
+    name: "Moeda Social Carbono - Colônia Z10",
+    registryId: "54321",
     status: "Ativo",
     location: "Cacuia, RJ",
-    type: "Moeda Social",
+    region: "RJ/Brasil",
+    type: "Mitigação",
     date: "01/12/2024",
     progress: 75,
     description: "MOEDA SOCIAL CARBONO\n\nO projeto propõe a realização de inventário de emissões de gases de efeito estufa de unidades residenciais, comerciais e/ou empresas, com apoio de cadastro online e/ou presencial, tudo com apoio de uma Calculadora de Emissões de Gases.",

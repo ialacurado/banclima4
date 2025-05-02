@@ -1,9 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Eye, ArrowLeft, Check } from "lucide-react";
+import { Eye, ArrowLeft, Check, LogIn, Shapes } from "lucide-react";
 import ProjectMap from "./ProjectMap";
+import ProjectRegion from "./ProjectRegion";
+import { Badge } from "@/components/ui/badge";
 
 interface ProjectDetailViewProps {
   projectId?: string;
@@ -13,22 +15,21 @@ interface ProjectDetailViewProps {
 const getProjectData = (id: string) => {
   return {
     id: id || "Ban12345",
-    name: "Moeda Social Carbono",
+    name: "Moeda Social Carbono - Colônia Z10",
+    registryId: "54321",
+    bairro: "CACUIA",
     region: "RJ/Brasil",
-    description: "Primeira certificação Gold Standard de \"redução de emissões de CO2 a partir de reciclagem de PET\". Referencial: aproximadamente mais de 45.380 t de CO2 O Projeto \"Redução de Emissões de Greentech a partir da Reciclagem de PET, România\" desenvolvido pela Greentech — uma empresa membro do Green Group é o primeiro projeto na Europa a aplicar estruturas de redução de PET por meio da reciclagem de resíduos de PET, reduzindo proativamente as emissões de gases de efeito estufa (GEE) que seriam necessárias para a produção de produtos feitos de polímeros virgens. O projeto PET marca um progresso em direção a muitos dos Objetivos de Desenvolvimento Sustentável (ODS). As reduções totais de emissões de GEE para o período de crédito de 10 anos (2016-2025) são estimadas em 453.800 t de CO2. A redução média anual estimada de emissões de GEE é de 45.380 t de CO2e. A reciclagem mecânica pode reduzir drasticamente os requisitos específicos de GN/kJ, pois contribui para a sustentabilidade ambiental local, uma vez que a reciclagem, em vez da utilização de materiais de insumos virgens, reduz o consumo total de energia, as emissões de GEE e o impacto ambiental causado pela extração de recursos virgens. As fábricas de reciclagem a nível operacional de PET reduz a quantidade de resíduos a serem descartados em aterros sanitários.",
+    description: "MOEDA SOCIAL CARBONO\n\nO projeto propõe a realização de inventário de emissões de gases de efeito estufa de unidades residenciais, comerciais e/ou empresas, com apoio de cadastro online e/ou presencial, tudo com apoio de uma Calculadora de Emissões de Gases.\n\nAs reduções significam geração de créditos de carbono, que transformados em Moeda Social Carbono, são lançados no BANCLIMA, em sua conta cadastrada.",
     developer: "Instituto Terrazul",
-    methodology: "AMS-III.AJ: Recuperação e reciclagem de materiais de resíduos sólidos",
-    version: "Padrão Ouro para os Objetivos Globais",
-    scale: "Pequena escala",
-    creditPeriod: "01 de janeiro de 2017 a 31 de dezembro de 2026",
-    annualCredits: "45.380",
+    partnerships: "Prefeitura do Rio / CEA / Colônia de Pescadores Z10",
+    support: "Moove",
     projectType: "Mitigação",
-    status: "Projeto Certificado Gold Standard",
+    status: "Ativo",
     publishedTokens: "282813",
     retiredTokens: "119879",
     odsIcons: [1, 8, 13, 5, 12, 17],
-    attributes: ["Certificação Gold Standard"],
-    images: ["/lovable-uploads/3523a330-6976-4e1b-be29-3d2856fa5ade.png"]
+    attributes: [],
+    images: ["/lovable-uploads/WhatsApp Image 2025-04-03 at 18.32.45 (2).jpeg"]
   };
 };
 
@@ -58,7 +59,158 @@ const getOdsColorClass = (odsNumber: number): string => {
 };
 
 const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({ projectId }) => {
-  return <></>;
+  const project = getProjectData(projectId || "");
+  const navigate = useNavigate();
+  
+  return (
+    <div className="space-y-6">
+      <div className="mb-4">
+         <Button variant="outline" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
+          <ArrowLeft className="h-4 w-4" />
+          Voltar
+        </Button>
+      </div>
+
+      <div className="w-full text-center py-10 bg-[#0e7cb4] text-white">
+        <h1 className="text-3xl font-bold mb-2">MOEDA SOCIAL CARBONO – COLÔNIA Z10</h1>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-1">
+          <Card className="overflow-hidden">
+            <div className="bg-[#0e7cb4] p-0">
+              <img
+                src={project.images[0]}
+                alt={project.name}
+                className="w-full h-[300px] object-cover"
+              />
+            </div>
+            <CardContent className="p-4">
+              <div className="space-y-4">
+                <div>
+                  <p className="font-medium text-lg">{project.name}</p>
+                  <p className="text-sm text-gray-600">Registro Banclima {project.registryId}</p>
+                  <p className="text-sm text-gray-600">Região: {project.region}</p>
+                  <p className="text-sm text-gray-600">Tipo: {project.projectType}</p>
+                </div>
+                
+                <div>
+                  <p className="text-sm text-gray-500">Status</p>
+                  <div className="flex items-center">
+                    <span className="h-2 w-2 rounded-full bg-green-500 mr-2"></span>
+                    <p className="text-sm">{project.status}</p>
+                  </div>
+                </div>
+                
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">Tokens Publicados</p>
+                  <p className="text-xl font-bold text-[#0e7cb4]">{project.publishedTokens}</p>
+                </div>
+                
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">Tokens Aposentados</p>
+                  <p className="text-xl font-bold text-[#0e7cb4]">{project.retiredTokens}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+        
+        <div className="md:col-span-2">
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="text-xl font-bold mb-4">Sobre o Projeto</h2>
+              <p className="text-gray-700 whitespace-pre-line mb-6">{project.description}</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-[#0e7cb4]"></div>
+                      <span><strong>Desenvolvedor</strong>: {project.developer}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-[#0e7cb4]"></div>
+                      <span><strong>Parcerias</strong>: {project.partnerships}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-[#0e7cb4]"></div>
+                      <span><strong>Apoio</strong>: {project.support}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-[#0e7cb4]"></div>
+                      <span><strong>Quantidade de Moradores:</strong> 40</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-[#0e7cb4]"></div>
+                      <span><strong>Início do Projeto:</strong> Janeiro de 2025</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-[#0e7cb4]"></div>
+                      <span><strong>Emissões Evitadas:</strong> 5.280,80 KgCO2e</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-[#0e7cb4]"></div>
+                      <span><strong>Período de Bonificação:</strong> Trimestral</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="h-3 w-3 rounded-full bg-[#0e7cb4]"></div>
+                      <span><strong>Benefícios concedidos:</strong> R$ 2.740,00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-6">
+                <h3 className="font-medium mb-2">Impactos ODS</h3>
+                <div>
+                  <img 
+                    src="/lovable-uploads/6204ceab-eb43-4664-a6b6-11446c29a6f6.png" 
+                    alt="Impactos ODS" 
+                    className="max-w-full h-auto max-h-24 object-contain"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      const alternativeImg = document.getElementById('alternative-ods-img') as HTMLImageElement;
+                      if (alternativeImg) alternativeImg.style.display = 'block';
+                    }}
+                  />
+                  <img 
+                    id="alternative-ods-img"
+                    src="/lovable-uploads/4eb508d4-ec81-401d-9011-ea6f683b721e.png" 
+                    alt="Impactos ODS Alternativos" 
+                    className="max-w-full h-auto max-h-24 object-contain"
+                    style={{display: 'none'}}
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      document.getElementById('ods-fallback')!.style.display = 'flex';
+                    }}
+                  />
+                  <div id="ods-fallback" className="flex flex-wrap gap-2 mt-2" style={{display: 'none'}}>
+                    {project.odsIcons.map((ods) => (
+                      <div 
+                        key={ods} 
+                        className={`${getOdsColorClass(ods)} w-8 h-8 rounded-full flex items-center justify-center text-white font-bold`}
+                      >
+                        {ods}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+      
+      {/* Map section if needed */}
+      {/* <ProjectMap /> */}
+    </div>
+  );
 };
 
 export default ProjectDetailView;

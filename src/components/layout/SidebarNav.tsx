@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -150,7 +149,7 @@ const SidebarNav: React.FC<SidebarNavProps> = ({ userRole }) => {
               <SidebarMenuButton className="text-red-200">
                 <button className="flex items-center gap-3 w-full text-left">
                   <LogOut size={18} />
-                  <span>Sair</span>
+                  <span>Entrar</span>
                 </button>
               </SidebarMenuButton>
             </SidebarMenuItem>

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,10 +12,10 @@ const Projects: React.FC = () => {
   const projects = [
     {
       id: "PRJ-001",
-      name: "Moeda Social Carbono",
+      name: "Moeda Social Carbono - Colônia Z10",
       status: "Ativo",
       location: "Cacuia, RJ",
-      type: "Moeda Social",
+      type: "Mitigação",
       date: "01/12/2024",
       progress: 75,
     },

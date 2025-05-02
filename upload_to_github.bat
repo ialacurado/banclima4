@@ -84,26 +84,8 @@ echo Preparando para enviar ao GitHub...
 git branch -M main
 
 echo.
-echo Método de autenticação:
-echo 1. Token de Acesso Pessoal (recomendado)
-echo 2. Credenciais via browser
-set /p AUTH_METHOD="Escolha o método (1 ou 2): "
-
-if "%AUTH_METHOD%"=="1" (
-    echo.
-    echo Para criar um token: https://github.com/settings/tokens
-    echo Certifique-se de habilitar permissões 'repo' para o token.
-    echo.
-    set /p TOKEN="Entre com seu Token de Acesso Pessoal: "
-    
-    echo.
-    echo Enviando para GitHub usando token...
-    git -c credential.helper= push -u "https://%USERNAME%:%TOKEN%@github.com/%USERNAME%/%REPO_NAME%.git" main
-) else (
-    echo.
-    echo Enviando para GitHub...
-    git push -u origin main
-)
+echo Enviando para GitHub...
+git push -u origin main
 
 if %ERRORLEVEL% NEQ 0 (
     echo.
@@ -116,12 +98,7 @@ if %ERRORLEVEL% NEQ 0 (
     echo.
     echo Atualizando URL remota e tentando novamente...
     git remote set-url origin %REPO_URL%
-    
-    if "%AUTH_METHOD%"=="1" (
-        git -c credential.helper= push -u "https://%USERNAME%:%TOKEN%@github.com/%USERNAME%/%REPO_NAME%.git" main
-    ) else (
-        git push -u origin main
-    )
+    git push -u origin main
     
     if %ERRORLEVEL% NEQ 0 (
         echo.

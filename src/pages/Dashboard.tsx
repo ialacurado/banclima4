@@ -3,6 +3,7 @@ import UserNavMenu from "@/components/user/UserNavMenu";
 import UserHeader from "@/components/user/UserHeader";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Clock, CreditCard, Folder, Award } from "lucide-react";
+import Footer from "@/components/layout/Footer";
 
 const Dashboard: React.FC = () => {
   // Dados mock - em uma aplicação real viriam de uma API
@@ -98,7 +99,10 @@ const Dashboard: React.FC = () => {
                   className="h-24 object-contain"
                 />
                 <div>
-                  <h3 className="text-lg font-medium mb-2">Moeda Social Carbono</h3>
+                  <h3 className="text-lg font-medium mb-2">Moeda Social Carbono - Colônia Z10</h3>
+                  <p className="text-sm text-gray-600 mb-1">Registro Banclima 54321</p>
+                  <p className="text-sm text-gray-600 mb-1">Região: RJ/Brasil</p>
+                  <p className="text-sm text-gray-600 mb-3">Tipo: Mitigação</p>
                   <div className="flex gap-4">
                     <div>
                       <p className="text-xs text-gray-500">Tokens Publicados</p>
@@ -116,16 +120,7 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
       
-      <footer className="bg-gray-100 py-4 text-center text-sm text-gray-500 mt-auto">
-        <span className="inline-flex items-center justify-center">
-          Todos os direitos reservados
-          <img
-            src="/lovable-uploads/07427772-7049-41cb-996b-2d1ad53f5d8e.png"
-            alt="Banclima Logo"
-            className="h-4 inline-block ml-1"
-          />
-        </span>
-      </footer>
+      <Footer />
     </div>
   );
 };
